@@ -1,0 +1,35 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true  },
+  "rules": {
+    "semi": [1, "never"],
+    "arrow-parens": 2,
+    "consistent-return": 2,
+    "comma-dangle": 0,
+    "no-debugger": 1,
+    "no-console": 1,
+    "generator-star-spacing": 0,
+    "import/no-unresolved": ["error", { "ignore": ["electron"] }],
+    "import/no-extraneous-dependencies": "off",
+    "promise/param-names": 2,
+    "promise/always-return": 2,
+    "promise/catch-or-return": 2,
+    "promise/no-native": 0,
+    "react/jsx-no-bind": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/prefer-stateless-function": "off"  },
+  "plugins": [
+    "import",
+    "promise",
+    "react"  ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"      }
+    }
+  }
+}

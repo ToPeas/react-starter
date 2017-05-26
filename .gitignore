@@ -38,6 +38,7 @@ build/Release
 node_modules/
 .idea
 jspm_packages/
+.vscode
 
 # Typescript v1 declaration files
 typings/

@@ -14,3 +14,6 @@ npm run dev
 npm run build
 ```
 
+[ ] redux-store热更新
+[ ] redux和router同步数据
+

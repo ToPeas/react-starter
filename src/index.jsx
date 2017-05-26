@@ -9,6 +9,7 @@ if (module.hot) {
   module.hot.accept()
 }
 
+
 const store = configStore()
 
 ReactDOM.render(

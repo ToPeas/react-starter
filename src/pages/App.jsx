@@ -10,20 +10,23 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = bindActionCreators({ getIndexData }, dispatch)
-  return { ...actions, dispatch }
+  const actions = bindActionCreators({getIndexData}, dispatch)
+  return {...actions, dispatch}
 }
 
 class App extends Component {
 
-  // handleClick = () => this.props.getIndexData()
+  handleClick () {
+    console.log(this)
+    return this.props.getIndexData()
+  }
 
-  render() {
+  render () {
     return (
       <div className="App">
         <div className="App-header">
           <p>点击logo有惊喜</p>
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" onClick={this.handleClick.bind(this)} alt="logo"/>
         </div>
         <h2>Welcome to React</h2>
         <p className="App-intro">

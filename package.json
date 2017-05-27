@@ -28,6 +28,7 @@
     "immutable": "^3.8.1",
     "koa": "^2.2.0",
     "koa-webpack": "^0.5.1",
+    "nodemon": "^1.11.0",
     "opn": "^5.0.0",
     "ora": "^1.2.0",
     "react-dom": "^15.5.4",
@@ -45,8 +46,8 @@
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
   },
-  "name": "react-dribbble",
-  "description": "> dotenv 模块 进行部署环境的变量 * 目前只是用到了配置端口号 * 开发环境",
+  "name": "react-start",
+  "description": "一个没有牌面的react脚手架",
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
@@ -64,12 +65,13 @@
     "immutable": "^3.8.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-hot-loader": "^3.0.0-beta.7",
     "react-redux": "^5.0.5",
     "react-router-redux": "^4.0.8",
-    "redux-logger": "^3.0.6",
-    "redux-immutablejs": "^0.0.8",
-    "redux-thunk": "^2.2.0",
     "redux": "^3.6.0",
+    "redux-immutablejs": "^0.0.8",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
     "update": "^0.7.4"
   },
   "repository": {

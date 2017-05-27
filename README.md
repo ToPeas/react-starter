@@ -2,6 +2,9 @@
 
 > dotenv 模块 进行部署环境的变量
 
+
+* 开发脚本
+
 ```bash
 npm run dev
 ```
@@ -14,7 +17,11 @@ npm run dev
 npm run build
 ```
 
-[ ] redux-store热更新
+[x] redux-store热更新
 
 [ ] redux和router同步数据
+
+[x] 添加editorconfig的支持
+
+[ ] 利用env判断不同的运行环境
 

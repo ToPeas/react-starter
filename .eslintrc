@@ -7,8 +7,12 @@
     "node": true
   },
   "rules": {
+    //     坚决的不打分号
     "semi": 0,
-    "arrow-parens": 2
+    //    要求箭头函数的参数使用圆括号
+    "arrow-parens": 2,
+    //  禁止非dependecics的引用
+    "import/no-extraneous-dependencies": 0
   },
   "plugins": [
     "import",

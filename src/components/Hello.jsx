@@ -4,10 +4,10 @@
 
 import React from 'react'
 
-const Hollo = props => (
+
+const Hollo = () => (
   <div>
-    <p>裴大哥爱你</p>
-    <p>{props}</p>
+    <p>一个展示组件</p>
   </div>
 )
 export default Hollo

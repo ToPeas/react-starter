@@ -11,5 +11,5 @@ export default {
       method: 'get',
       url: `${config.url}${url}`,
     })
-  }
+  },
 }

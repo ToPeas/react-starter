@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import logo from '../asset/imgs/logo.svg'
 import { getIndexData } from '../stores/reducer/test'
 import '../style/pages/App.css'
+import Hello from '../components/Hello'
 
 const mapStateToProps = state => ({
   test: state.test.toJS(),
@@ -30,6 +31,7 @@ class App extends Component {
           <img src={logo} className="App-logo" onClick={this.handleClick.bind(this)} alt="logo" />
         </div>
         <h2>裴大哥爱你哟</h2>
+        <Hello props="裴大哥爱你" />
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>

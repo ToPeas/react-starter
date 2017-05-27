@@ -11,8 +11,12 @@
     "semi": 0,
     //    要求箭头函数的参数使用圆括号
     "arrow-parens": 2,
-    //  禁止非dependecics的引用
-    "import/no-extraneous-dependencies": 0
+    //    禁止非dependecics的引用
+    "import/no-extraneous-dependencies": 0,
+    //    强制在模块顶部调用
+    "global-require": "off",
+    //    禁止标识符中有悬空下划线
+    "no-underscore-dangle": "off"
   },
   "plugins": [
     "import",

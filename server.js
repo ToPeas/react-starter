@@ -26,6 +26,8 @@ app.use(Dev({
     stats: {
       colors: true,
     },
+    noInfo: false,
+    quiet: false,
   },
   hot: {
     log: false,

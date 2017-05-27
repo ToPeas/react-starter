@@ -1,6 +1,6 @@
 /**
- * Created by topeas on 2017/5/11.
- */
+* Created by topeas on 2017/5/11.
+*/
 import {
   createStore,
   applyMiddleware,
@@ -13,8 +13,8 @@ import {
 import reducers from './stores'
 
 // chrome的react devtool 的扩展
-
 /* eslint-disable no-undef */
+
 const enhancerCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const logger = createLogger()
@@ -28,7 +28,7 @@ const configStore = (initialState) => {
   ))
 
   if (module.hot) {
-    module.hot.accept('./stores/index', () => store.replaceReducer(global.require('./stores/index').default))
+    module.hot.accept('./stores/index', () => store.replaceReducer(require('./stores/index').default))
   }
   return store
 }

@@ -16,6 +16,7 @@
   ],
   "plugins": [
     "transform-runtime",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "react-hot-loader/babel"
   ]
 }

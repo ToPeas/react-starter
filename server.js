@@ -2,21 +2,21 @@
  * Created by ToPeas on 2017/4/11 => 19:08 in webpack-seed.
  */
 
-const koa = require('koa')
+const Koa = require('koa')
 const DevConf = require('./build/webpack.dev')
 const webpack = require('webpack')
 const Dev = require('koa-webpack')
 // const path = require('path')
 const opn = require('opn')
 
-
 // 获取配置信息
+
+/* eslint import/no-extraneous-dependencies: 0 */
 require('dotenv').config()
 
-const app = new koa()
+const app = new Koa()
 
-DevConf.entry.app = ['webpack-hot-middleware/client', DevConf.entry.app]
-
+DevConf.entry.app = ['react-hot-loader/patch', 'webpack-hot-middleware/client', DevConf.entry.app]
 
 const compiler = webpack(DevConf)
 
@@ -24,13 +24,15 @@ app.use(Dev({
   compiler,
   dev: {
     stats: {
-      colors: true
+      colors: true,
     },
   },
   hot: {
     log: false,
-    heartbeat: 2000
-  }
+    heartbeat: 2000,
+    quiet: true,
+    noInfo: true,
+  },
 }))
 
 const port = +process.env.PORT || 8888

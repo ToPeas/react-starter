@@ -7,6 +7,9 @@ const merge = require('webpack-merge')
 const BaseConf = require('./webpack.base')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HappyPack = require('happypack')
+const os = require('os')
+let happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = merge(BaseConf, {
@@ -20,5 +23,10 @@ module.exports = merge(BaseConf, {
       inject: true
     }),
     new FriendlyErrorsPlugin(),
+    new HappyPack({
+      id: 'jsx',
+      threadPool: happyThreadPool,
+      loaders: ['babel-loader'],
+    }),
   ],
 })

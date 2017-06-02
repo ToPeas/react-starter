@@ -3,3 +3,6 @@
 /scripts/
 /build/
 /.idea/
+/dist/
+
+/.cache/

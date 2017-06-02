@@ -6,22 +6,21 @@ import App from './pages/App'
 import configStore from './store'
 import './style/index.css'
 
+// console.log(React)
 if (module.hot) {
   module.hot.accept()
 }
 
 const store = configStore()
 
-const rootEl = document.getElementById('root')
-const render = Component =>
-  ReactDOM.render(
-    <AppContainer>
-      <Provider store={store}>
-        <Component />
-      </Provider>
-    </AppContainer>,
-    rootEl,
-  )
+ReactDOM.render(
+  <AppContainer>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </AppContainer>,
+  document.getElementById('root'),
+)
+const render = ReactDOM.render
 
-render(App)
 if (module.hot) module.hot.accept('./pages/App', () => render(App))

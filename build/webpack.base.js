@@ -5,9 +5,13 @@
 const webpack = require('webpack')
 const path = require('path')
 
+const HappyPack = require('happypack')
+
+
 module.exports = {
   entry: {
     app: path.resolve(__dirname, '../src/index.jsx'),
+    // vendor:['react','redux','react-redux','axios']
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -26,7 +30,8 @@ module.exports = {
     rules: [
       {
         test: /\.js|\.jsx$/,
-        use: 'babel-loader',
+        use: 'happypack/loader?id=jsx',
+        // use: 'babel-loader',
         exclude: /node_modules/,
       },
       {

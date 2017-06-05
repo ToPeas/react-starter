@@ -1,14 +1,17 @@
-/**
- * Created by topeas on 2017/5/11.
- */
+import React, { Component } from 'react'
 
-import React from 'react'
+export default class Hello extends Component {
+  handleClick () {
 
+    console.log('111')
+  }
 
-const Hollo = () => (
-  <div>
-    <p>一个展示组件</p>
-  </div>
-)
-export default Hollo
-
+  render () {
+    return (
+      <footer>
+        <div onClick={this.handleClick.bind(this)} className="topeas">Martox</div>
+        <p className='cc'>topeas</p>
+      </footer>
+    )
+  }
+}

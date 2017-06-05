@@ -4,21 +4,28 @@
     "clean": "rimraf ./dist && mkdir dist",
     "prebuild": "npm run clean",
     "build": "node build/build.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "NODE_ENV=test jest --no-cache --coverage"
   },
   "devDependencies": {
     "axios": "^0.16.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.5.1",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "chai": "^4.0.1",
     "chunk-manifest-webpack-plugin": "^1.1.0",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
+    "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-formatter-pretty": "^1.1.0",
@@ -32,18 +39,22 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "happypack": "^4.0.0-beta.1",
     "html-webpack-plugin": "^2.28.0",
+    "identity-obj-proxy": "^3.0.0",
     "immutable": "^3.8.1",
+    "jest": "^20.0.4",
+    "jest-enzyme": "^3.2.0",
     "koa": "^2.2.0",
     "koa-webpack": "^0.5.1",
     "nodemon": "^1.11.0",
     "opn": "^5.0.0",
     "ora": "^1.2.0",
     "os": "^0.1.1",
+    "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-router-redux": "^4.0.8",
+    "react-test-renderer": "^15.5.4",
     "redux": "^3.6.0",
-    "redux-immutablejs": "0.0.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.1",
@@ -63,6 +74,8 @@
   "main": "server.js",
   "dependencies": {
     "axios": "^0.16.1",
+    "chai": "^4.0.1",
+    "global": "^4.3.2",
     "immutable": "^3.8.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -90,5 +103,27 @@
   "bugs": {
     "url": "https://github.com/ToPeas/react-starter/issues"
   },
-  "homepage": "https://github.com/ToPeas/react-starter#readme"
+  "homepage": "https://github.com/ToPeas/react-starter#readme",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "verbose": true,
+    "transform": {
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/enzyme/"
+    ]
+  }
 }

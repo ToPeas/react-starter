@@ -5,7 +5,7 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-import test from './reducer/test'
+import test from './reducer/reduceApp'
 
 export default combineReducers({
   test,

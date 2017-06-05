@@ -8,7 +8,7 @@ import React from 'react'
 import Hello from './Hello'
 // import { expect } from 'chai';
 // var expect = require('chai').expect;
-import { shallow } from 'enzyme'
+import {shallow} from 'enzyme'
 // import { expect } from 'chai'
 
 describe('this component rightly className cc', () => {
@@ -22,10 +22,12 @@ describe('this component rightly className cc', () => {
     //   // expect(wrapper.find('.cc').hasClass('cc')).toEqual(true)
     //   expect(wrapper.contains([<p>s</p>])).toEqual(true)
     // }),
-  it('this', () => {
-    const wrapper = shallow(<Hello cc="裴大哥"/>)
-    wrapper.find('.topeas').simulate('click')
-    expect('handleClick').toBeChecked()
+    it('this', () => {
+      const wrapper = shallow(<Hello cc="裴大哥"/>)
+      wrapper.find('.topeas').simulate('click')
+      expect(+(wrapper.find('#cc').text())).toEqual(3)
+      // const wrapper = shallow(<Hello cc="裴大哥"/>)
+      // expect(wrapper.find('.cc').length).toBe(1)
 
-  })
+    })
 })

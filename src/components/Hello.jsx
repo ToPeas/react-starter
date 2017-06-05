@@ -1,16 +1,26 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 export default class Hello extends Component {
-  handleClick () {
+  state = {
 
-    console.log('111')
+    id: 2
+
   }
 
-  render () {
+
+  handleClick() {
+
+    this.setState({
+      id: 3
+    })
+  }
+
+  render() {
     return (
       <footer>
         <div onClick={this.handleClick.bind(this)} className="topeas">Martox</div>
         <p className='cc'>topeas</p>
+        <p id="cc">{this.state.id}</p>
       </footer>
     )
   }

@@ -1,5 +1,12 @@
 {
   "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
+      }
+    ],
     "syntax-dynamic-import",
     "transform-runtime",
     "transform-object-rest-spread",

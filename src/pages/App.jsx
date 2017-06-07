@@ -6,9 +6,11 @@ import logo from '../asset/imgs/logo.svg'
 import { getIndexData } from '../stores/reducer/reduceApp'
 import '../style/pages/App.css'
 import Hello from '../components/Hello'
+import Markdown from  '../components/Markdown'
+// import {} from ''
 
 const mapStateToProps = state => ({
-  test: state.test.toJS(),
+  markdown: state.markdown.toJS(),
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -19,8 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 class App extends Component {
 
   handleClick () {
-    // console.log(this)
-    return this.props.getIndexData()
+     return this.props.getIndexData()
   }
 
   render () {
@@ -32,6 +33,7 @@ class App extends Component {
         </div>
         <h2>裴大哥爱你哟</h2>
         <Hello cc="裴大哥爱你"/>
+        <Markdown/>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>

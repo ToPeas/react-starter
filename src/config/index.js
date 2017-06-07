@@ -3,5 +3,5 @@
  */
 
 export default {
-  url: 'https://cnodejs.org/api/v1',
+  url: 'http://localhost:10001',
 }

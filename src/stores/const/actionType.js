@@ -3,4 +3,4 @@
  */
 
 export const INDEX_GET = 'INDEX_GET'
-export const INDEX_POST = 'INDEX_POST'
+export const MARKDOWN_EDIT = 'MARKDOWN_EDIT'

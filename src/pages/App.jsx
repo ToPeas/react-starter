@@ -19,15 +19,16 @@ const mapDispatchToProps = (dispatch) => {
 class App extends Component {
 
   handleClick () {
-    // console.log(this)
+    console.log(this)
     return this.props.getIndexData()
   }
 
   render () {
+    // console.log('',)
     return (
       <div className="App">
         <div className="App-header">
-          <p>点击logo发送一个异步的请求,可以测试一下async函数是否正常</p>
+          <p>点击logo</p>
           <img src={logo} className="App-logo" onClick={this.handleClick.bind(this)} alt="logo"/>
         </div>
         <h2>裴大哥爱你哟</h2>

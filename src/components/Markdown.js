@@ -2,27 +2,26 @@
  * Created by topeas on 2017/6/7.
  */
 
-import React, { Component } from 'react'
-import { Button, Input, Rate, message, Tag, Tooltip } from 'antd'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, {Component} from 'react'
+import {Button, Input, Rate, message, Tag, Tooltip, Upload, Icon, Modal} from 'antd'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import marked from 'marked'
-import { sendMarkdown } from '../stores/reducer/markdown'
+import {sendMarkdown} from '../stores/reducer/markdown'
 
 const mapStateToProps = state => {
-
   return {
     markdown: state.markdown.toJS()
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = bindActionCreators({sendMarkdown}, dispatch)
-  return {...actions, dispatch}
+  const actions = bindActionCreators({ sendMarkdown }, dispatch)
+  return { ...actions, dispatch }
 }
 
 class Markdown extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       value: '',
@@ -31,6 +30,14 @@ class Markdown extends Component {
       inputValue: '',
       title: '',
       summary: '',
+      previewVisible: false,
+      previewImage: '',
+      fileList: [{
+        uid: -1,
+        name: 'xxx.png',
+        status: 'done',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      }],
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -39,21 +46,21 @@ class Markdown extends Component {
     this.createMarkdownPreview = this.createMarkdownPreview.bind(this)
   }
 
-  handleChange (event) {
-    this.setState({value: event.target.value})
+  handleChange(event) {
+    this.setState({ value: event.target.value })
   }
 
-  handleTitle (event) {
-    this.setState({title: event.target.value})
+  handleTitle(event) {
+    this.setState({ title: event.target.value })
   }
 
-  handleSummary (event) {
-    this.setState({summary: event.target.value})
+  handleSummary(event) {
+    this.setState({ summary: event.target.value })
   }
 
-  handleClick () {
+  handleClick() {
     const value = marked(this.state.value)
-    const {title, tags, summary} = this.state
+    const { title, tags, summary } = this.state
     const reduxValue = this.props.markdown.markdownContent
     if (!title) return message.error('标题不能为空')
     if (!summary) return message.error('简介不能为空')
@@ -70,22 +77,22 @@ class Markdown extends Component {
     this.props.sendMarkdown(markdown)
   }
 
-  createMarkdownPreview () {
-    return {__html: marked(this.state.value)}
+  createMarkdownPreview() {
+    return { __html: marked(this.state.value) }
   }
 
   handleClose = (removedTag) => {
     const tags = this.state.tags.filter(tag => tag !== removedTag)
     console.log(tags)
-    this.setState({tags})
+    this.setState({ tags })
   }
 
   showInput = () => {
-    this.setState({inputVisible: true}, () => this.input.focus())
+    this.setState({ inputVisible: true }, () => this.input.focus())
   }
 
   handleInputChange = (e) => {
-    this.setState({inputValue: e.target.value})
+    this.setState({ inputValue: e.target.value })
   }
 
   handleInputConfirm = () => {
@@ -105,16 +112,48 @@ class Markdown extends Component {
 
   saveInputRef = input => this.input = input
 
-  render () {
-    const {tags, inputVisible, inputValue} = this.state
+  handleCancel = () => this.setState({ previewVisible: false })
+
+  handlePreview = (file) => {
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  }
+
+  handleChange1 = ({ fileList }) => this.setState({ fileList })
+
+  render() {
+    const { tags, inputVisible, inputValue } = this.state
+    const { previewVisible, previewImage, fileList } = this.state
+    const uploadButton = (
+      <div>
+        <Icon type="plus"/>
+        <div className="ant-upload-text">Upload</div>
+      </div>
+    )
     return (
       <div>
         <header>
           <Button onClick={this.handleClick} size="large">发布</Button>
-          <Button>取消</Button>
+          <Button size="large">取消</Button>
 
           <Input onChange={this.handleTitle} placeholder="请输入文章的标题"/>
           <Input onChange={this.handleSummary} placeholder="请输入文章的简介"/>
+          <div className="clearfix">
+            <Upload
+              action="//jsonplaceholder.typicode.com/posts/"
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={this.handlePreview}
+              onChange={this.handleChange1}
+            >
+              {fileList.length >= 3 ? null : uploadButton}
+            </Upload>
+            <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+              <img alt="example" style={{ width: '100%' }} src={previewImage}/>
+            </Modal>
+          </div>
           <div>
             {tags.map((tag, index) => {
               const isLongTag = tag.length > 20
@@ -130,7 +169,7 @@ class Markdown extends Component {
                 ref={this.saveInputRef}
                 type="text"
                 size="small"
-                style={{width: 78}}
+                style={{ width: 78 }}
                 value={inputValue}
                 onChange={this.handleInputChange}
                 onBlur={this.handleInputConfirm}

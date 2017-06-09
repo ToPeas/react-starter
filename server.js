@@ -8,7 +8,7 @@ const webpack = require('webpack')
 const Dev = require('koa-webpack')
 // const path = require('path')
 const opn = require('opn')
-
+// const history = require('koa-connect-history-api-fallback')
 // 获取配置信息
 
 /* eslint import/no-extraneous-dependencies: 0 */
@@ -37,11 +37,12 @@ app.use(Dev({
   },
 }))
 
+// app.use(history())
 const port = +process.env.PORT || 8888
 
 console.log('环境模式', process.env.ENV)
 
 app.listen(port, () => {
-  opn(`http://localhost:${port}`)
+  // opn(`http://localhost:${port}`)
   console.log(`server started at http://localhost:${port}`)
 })

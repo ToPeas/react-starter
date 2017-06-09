@@ -82,6 +82,7 @@
     "global": "^4.3.2",
     "highlight.js": "^9.12.0",
     "immutable": "^3.8.1",
+    "koa-connect-history-api-fallback": "^0.3.1",
     "marked": "^0.3.6",
     "qiniu": "^6.1.13",
     "react": "^15.5.4",

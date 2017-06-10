@@ -17,14 +17,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class App extends Component {
-
   handleClick () {
-    console.log(this)
     return this.props.getIndexData()
   }
 
   render () {
-    // console.log('',)
     return (
       <div className="App">
         <div className="App-header">

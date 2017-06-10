@@ -8,13 +8,13 @@ const webpack = require('webpack')
 const Dev = require('koa-webpack')
 // const path = require('path')
 const opn = require('opn')
-
-// 获取配置信息
+const historyApiFallback = require('koa2-history-api-fallback')// 获取配置信息
 
 /* eslint import/no-extraneous-dependencies: 0 */
 require('dotenv').config()
 
 const app = new Koa()
+app.use(historyApiFallback())
 
 DevConf.entry.app = ['react-hot-loader/patch', 'webpack-hot-middleware/client', DevConf.entry.app]
 
@@ -39,9 +39,9 @@ app.use(Dev({
 
 const port = +process.env.PORT || 8888
 
-console.log('环境模式', process.env.ENV)
+// console.log('环境模式', process.env.ENV)
 
 app.listen(port, () => {
-  opn(`http://localhost:${port}`)
+  // opn(`http://localhost:${port}`)
   console.log(`server started at http://localhost:${port}`)
 })

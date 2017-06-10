@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, {Component} from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import logo from '../asset/imgs/logo.svg'
-import {getIndexData} from '../stores/reducer/reduceApp'
+import { getIndexData } from '../stores/reducer/reduceApp'
 import '../style/pages/App.css'
 import Hello from '../components/Hello'
 import Markdown from '../components/Markdown'
 
 const mapStateToProps = state => ({
-  test: state.test.toJS(),
+  test: state.markdown.toJS(),
 })
 
 const mapDispatchToProps = (dispatch) => {

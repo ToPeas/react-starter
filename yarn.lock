@@ -553,7 +553,7 @@ babel-plugin-check-es2015-constants@^6.22.0:
 
 babel-plugin-import@^1.2.1:
   version "1.2.1"
-  resolved "http://r.cnpmjs.org/babel-plugin-import/download/babel-plugin-import-1.2.1.tgz#7726aa1b0f780e68d50f9d38e38b714edd9e7b0f"
+  resolved "http://registry.npm.taobao.org/babel-plugin-import/download/babel-plugin-import-1.2.1.tgz#7726aa1b0f780e68d50f9d38e38b714edd9e7b0f"
 
 babel-plugin-istanbul@^4.0.0:
   version "4.1.4"
@@ -5325,11 +5325,11 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
 
-punycode@1.3.2:
+punycode@1.3.2, punycode@^1.2.4:
   version "1.3.2"
   resolved "http://r.cnpmjs.org/punycode/download/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
 
-punycode@^1.2.4, punycode@^1.4.1:
+punycode@^1.4.1:
   version "1.4.1"
   resolved "http://r.cnpmjs.org/punycode/download/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
@@ -6266,7 +6266,7 @@ shellwords@^0.1.0:
   version "0.1.0"
   resolved "http://r.cnpmjs.org/shellwords/download/shellwords-0.1.0.tgz#66afd47b6a12932d9071cbfd98a52e785cd0ba14"
 
-showdown@^1.5.4, showdown@^1.7.1:
+showdown@^1.5.4:
   version "1.7.1"
   resolved "http://r.cnpmjs.org/showdown/download/showdown-1.7.1.tgz#4cbc7b2b333bbd3d679d581c59fc8f27d88db0b1"
   dependencies:

@@ -37,11 +37,11 @@ app.use(Dev({
   },
 }))
 
-const port = +process.env.PORT || 8888
+const port = +process.env.PORT || 8889
 
 // console.log('环境模式', process.env.ENV)
 
 app.listen(port, () => {
-  // opn(`http://localhost:${port}`)
+  opn(`http://localhost:${port}`)
   console.log(`server started at http://localhost:${port}`)
 })

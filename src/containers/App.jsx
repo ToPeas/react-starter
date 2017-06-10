@@ -9,23 +9,20 @@ import Hello from '../components/Hello'
 import Markdown from '../components/Markdown'
 
 const mapStateToProps = state => ({
-  test: state.markdown.toJS(),
+  test: state.test.toJS(),
 })
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = bindActionCreators({ getIndexData }, dispatch)
-  return { ...actions, dispatch }
+  const actions = bindActionCreators({getIndexData}, dispatch)
+  return {...actions, dispatch}
 }
 
 class App extends Component {
-
-  handleClick() {
-    console.log(this)
+  handleClick () {
     return this.props.getIndexData()
   }
 
-  render() {
-    // console.log('',)
+  render () {
     return (
       <div className="App">
         <div className="App-header">

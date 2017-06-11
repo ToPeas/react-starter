@@ -19,14 +19,14 @@ module.exports = merge(BaseConf, {
     chunkFilename: '[name].[chunkhash:5].js',
   },
   plugins: [
-    // happyPack的配置
+
     new HappyPack({
       id: 'jsx',
       threadPool: happyThreadPool,
       loaders: ['babel-loader'],
     }),
     // 打包的分析
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     //https://github.com/dwqs/blog/issues/52n
     new ParallelUglifyPlugin({
       workerCount: os.cpus().length,

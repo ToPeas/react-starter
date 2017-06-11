@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import logo from '../asset/imgs/logo.svg'
 import { getIndexData } from '../stores/reducer/reduceApp'
-import '../style/pages/App.css'
+import '../style/pages/App.less'
 import Hello from '../components/Hello'
 
 const mapStateToProps = state => ({

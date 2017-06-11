@@ -17,7 +17,9 @@ module.exports = merge(BaseConf, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env': '"development"',
+      'process.env': {
+        NODE_ENV: '"development"'
+      },
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
@@ -25,11 +27,5 @@ module.exports = merge(BaseConf, {
       template: path.resolve(__dirname, '../index.html'),
       inject: true
     }),
-    // new FriendlyErrorsPlugin(),
-    // new HappyPack({
-    //   id: 'jsx',
-    //   threadPool: happyThreadPool,
-    //   loaders: ['babel-loader'],
-    // }),
   ],
 })

@@ -8,6 +8,7 @@ const chalk = require('chalk')
 const HappyPack = require('happypack')
 const autoprefixer = require('autoprefixer')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const resolve = (dir) => {
   return path.resolve(__dirname, dir)
@@ -51,11 +52,18 @@ module.exports = {
 
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: ['css-loader', 'less-loader']
+        })
       },
       {
-        test: /.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       },
       {
         test: /\.(tff|otf|eot|svg|woff2?)(\?.+)?$/,
@@ -86,6 +94,7 @@ module.exports = {
       // threadPool: happyThreadPool,
       verbose: true
     }),
+    new ExtractTextPlugin('[name].[chunkhash:5].css'),
 
   ]
 }

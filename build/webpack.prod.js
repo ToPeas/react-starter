@@ -7,9 +7,9 @@ const HappyPack = require('happypack')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const os = require('os')
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
-var WebpackChunkHash = require('webpack-chunk-hash')
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
+const WebpackChunkHash = require('webpack-chunk-hash')
 
 module.exports = merge(BaseConf, {
   output: {
@@ -19,13 +19,7 @@ module.exports = merge(BaseConf, {
     chunkFilename: '[name].[chunkhash:5].js',
   },
   plugins: [
-    // happyPack的配置
-    new HappyPack({
-      id: 'jsx',
-      threadPool: happyThreadPool,
-      loaders: ['babel-loader'],
-    }),
-    // 打包的分析
+    // 打包的分析,启动8888端口
     new BundleAnalyzerPlugin(),
     //https://github.com/dwqs/blog/issues/52n
     new ParallelUglifyPlugin({
@@ -59,7 +53,6 @@ module.exports = merge(BaseConf, {
       names: ['vendor', 'manifest'],
       minChunks: Infinity,
     }),
-
     new webpack.HashedModuleIdsPlugin(),
     new WebpackChunkHash(),
     new ChunkManifestPlugin({

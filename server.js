@@ -7,7 +7,9 @@ const DevConf = require('./build/webpack.dev')
 const webpack = require('webpack')
 const Dev = require('koa-webpack')
 // const path = require('path')
-const opn = require('opn')
+// const opn = require('opn')
+// const historyApiFallback = require('koa2-history-api-fallback')// 获取配置信息
+// const opn = require('opn')
 const historyApiFallback = require('koa2-history-api-fallback')// 获取配置信息
 
 /* eslint import/no-extraneous-dependencies: 0 */
@@ -27,7 +29,8 @@ app.use(Dev({
       colors: true,
     },
     noInfo: false,
-    quiet: false,
+    // quiet是决定打印的chunk的详细信息的
+    // quiet: true,
   },
   hot: {
     log: false,
@@ -37,11 +40,11 @@ app.use(Dev({
   },
 }))
 
-const port = +process.env.PORT || 8889
+const port = +process.env.PORT || 8890
 
 // console.log('环境模式', process.env.ENV)
 
 app.listen(port, () => {
-  opn(`http://localhost:${port}`)
+  // opn(`http://localhost:${port}`)
   console.log(`server started at http://localhost:${port}`)
 })

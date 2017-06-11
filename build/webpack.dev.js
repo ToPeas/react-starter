@@ -16,18 +16,17 @@ module.exports = merge(BaseConf, {
   devtool: '#cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      },
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../index.html'),
       favicon:'../favicon.ico',
       inject: true
-    }),
-    new FriendlyErrorsPlugin(),
-    new HappyPack({
-      id: 'jsx',
-      threadPool: happyThreadPool,
-      loaders: ['babel-loader'],
     }),
   ],
 })

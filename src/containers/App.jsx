@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import logo from '../asset/imgs/logo.svg'
 import { getIndexData } from '../stores/reducer/reduceApp'
-import '../style/pages/App.css'
+import '../style/pages/App.less'
 import Hello from '../components/Hello'
 import Markdown from '../components/Markdown'
 
@@ -18,16 +18,16 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class App extends Component {
-  handleClick() {
+  handleClick () {
     return this.props.getIndexData()
   }
 
-  render() {
+  render () {
     return (
       <div className="App">
         <div className="App-header">
           <p>点击logo</p>
-          <img src={logo} className="App-logo" onClick={this.handleClick.bind(this)} alt="logo" />
+          <img src={logo} className="App-logo" onClick={this.handleClick.bind(this)} alt="logo"/>
         </div>
         <h2>裴大哥爱你哟</h2>
         <Hello cc="裴大哥爱你" />

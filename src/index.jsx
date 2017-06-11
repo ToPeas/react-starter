@@ -4,7 +4,6 @@ import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import configStore from './store'
 import createHistory from 'history/createBrowserHistory'
-const history = createHistory()
 import './style/index.less'
 import App from './routes/index'
 import styles from './style/less/main.less'

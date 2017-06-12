@@ -1,32 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {AppContainer} from 'react-hot-loader'
-import {Provider} from 'react-redux'
+import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
 import configStore from './store'
-import './style/index.css'
-import Root from './routes'
+import createHistory from 'history/createBrowserHistory'
+import './style/index.less'
+import App from './routes/index'
+import styles from './style/less/main.less'
 
+const history = createHistory()
 
 const store = configStore()
-
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Component />
+        <Component history={history}/>
       </Provider>
     </AppContainer>,
     document.getElementById('root'),
-  );
-};
+  )
+}
 
-render(Root)
+render(App)
 
 if (module.hot) {
-  module.hot.accept('./routes', () => {
-    const newApp = require('./routes').default;
-    render(newApp);
-  });
+  module.hot.accept('./routes/index', () => {
+    const newApp = require('./routes/index').default
+    render(newApp)
+  })
 }
 

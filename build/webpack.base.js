@@ -4,14 +4,19 @@
 
 const webpack = require('webpack')
 const path = require('path')
-
+const chalk = require('chalk')
 const HappyPack = require('happypack')
+const autoprefixer = require('autoprefixer')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const resolve = (dir) => {
+  return path.resolve(__dirname, dir)
+}
 
 module.exports = {
   entry: {
     app: path.resolve(__dirname, '../src/index.jsx'),
-    // vendor:['react','redux','react-redux','axios']
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -23,20 +28,42 @@ module.exports = {
     alias: {
       '~src': './src'
     },
-    extensions: ['.js', '.jsx'],
-    modules: [path.resolve(__dirname, '../src', path.resolve(__dirname, '../node_modules'))]
+    extensions: ['.js', '.jsx', '.json'],
+    modules: [resolve('../src'), resolve('../node_modules')]
   },
   module: {
     rules: [
       {
-        test: /\.js|\.jsx$/,
-        use: 'happypack/loader?id=jsx',
-        // use: 'babel-loader',
-        exclude: /node_modules/,
+        test: /\.(js|jsx)/,
+        enforce: 'pre',
+        use: [{
+          loader: 'eslint-loader',
+          options: {
+            formatter: require('eslint-friendly-formatter')
+          }
+        }],
+        include: [resolve('./src')],
       },
       {
-        test: /.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.js|\.jsx$/,
+        use: 'happypack/loader?id=jsx',
+        exclude: /node_modules/,
+      },
+
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: ['css-loader', 'less-loader']
+        })
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       },
       {
         test: /\.(tff|otf|eot|svg|woff2?)(\?.+)?$/,
@@ -48,4 +75,26 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ProgressBarPlugin({
+      format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: ['last 2 version']
+          })
+        ]
+      }
+    }),
+    new HappyPack({
+      id: 'jsx',
+      loaders: ['babel-loader?cacheDirectory=true'],
+      // threadPool: happyThreadPool,
+      verbose: true
+    }),
+    new ExtractTextPlugin('[name].[chunkhash:5].css'),
+
+  ]
 }

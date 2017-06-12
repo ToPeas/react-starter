@@ -2,26 +2,27 @@
  * Created by mac on 2017/6/8.
  */
 
-import React, {Component} from 'react'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import App from '../pages/App'
-import Admin from '../pages/Admin'
+import React, { Component } from 'react'
+import App  from '../containers/App.jsx'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import Hello from '../components/Hello'
 
-const Rrror = () => {
-  return (
-    <div>404页面</div>
-  )
-
+export default class Root extends Component {
+  render () {
+    const {history} = this.props
+    return (
+      <BrowserRouter >
+        <div>
+          <h1>你好，世界</h1>
+          <ul>
+            <li><Link to="/login">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+          </ul>
+          <Route path="/" exact component={App}/>
+          <Route path="/login" component={Hello}/>
+          <Route path="/about" component={App}/>
+        </div>
+      </BrowserRouter>
+    )
+  }
 }
-
-const Root = () => (
-  <Router>
-    <div>
-      <header>我是你爹</header>
-      <Route path="/" exact component={App}/>
-      <Route path="/admin" component={Rrror}/>
-    </div>
-  </Router>
-)
-
-export default Root

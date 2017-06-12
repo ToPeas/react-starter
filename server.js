@@ -27,7 +27,7 @@ app.use(Dev({
     },
     noInfo: false,
     // quiet是决定打印的chunk的详细信息的
-    quiet: true,
+    // quiet: true,
   },
   hot: {
     log: false,

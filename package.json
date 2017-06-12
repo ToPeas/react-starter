@@ -87,6 +87,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "progress-bar-webpack-plugin": "^1.9.3",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-hot-loader": "^3.0.0-beta.7",
@@ -95,6 +96,7 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
+    "redux-immutable": "^4.0.0",
     "redux-immutablejs": "^0.0.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"

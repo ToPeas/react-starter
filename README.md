@@ -61,4 +61,4 @@ npm run build
 
 ### logs
 
-* 6-12 添加router和redux的结合，使用模块`connected-react-router`
+* 6-12 添加router和redux的结合，使用模块`connected-react-router`(解决之前不用跳转的问题)

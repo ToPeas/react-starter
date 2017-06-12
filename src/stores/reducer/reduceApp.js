@@ -27,8 +27,6 @@ const reducers = {
 
 export const getIndexData = config => async (dispatch) => {
   const { data } = await api.get('/topics', config)
-  // 状态码放在这里处理
-  // if (code === 200) {
   return dispatch({
     type: actionTypes.INDEX_GET,
     payload: {

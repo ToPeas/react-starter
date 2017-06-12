@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {AppContainer} from 'react-hot-loader'
-import {Provider} from 'react-redux'
-import configStore, {history} from './store'
+import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
+import configStore, { history } from './store'
 import './style/index.less'
 import App from './routes/index'
 
@@ -12,7 +12,7 @@ const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Component history={history}/>
+        <Component history={history} />
       </Provider>
     </AppContainer>,
     document.getElementById('root'),

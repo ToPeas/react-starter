@@ -1,17 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createHistory from 'history/createBrowserHistory'
-import { AppContainer } from 'react-hot-loader'
-import { Provider } from 'react-redux'
-import configStore from './store'
-
-import createHistory from 'history/createBrowserHistory'
-
+import {AppContainer} from 'react-hot-loader'
+import {Provider} from 'react-redux'
+import configStore, {history} from './store'
 import './style/index.less'
 import App from './routes/index'
-import styles from './style/less/main.less'
-
-const history = createHistory()
 
 const store = configStore()
 

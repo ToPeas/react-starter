@@ -2,27 +2,27 @@
  * Created by mac on 2017/6/8.
  */
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import App  from '../containers/App.jsx'
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-import Hello from '../components/Hello'
+import {Route, Link} from 'react-router-dom'
+import {ConnectedRouter} from 'connected-react-router'
+
+import About from '../containers/About.jsx'
 
 export default class Root extends Component {
-  render () {
-    const {history} = this.props
+  render() {
     return (
-      <BrowserRouter >
+      <ConnectedRouter history={this.props.history}>
         <div>
-          <h1>你好，世界</h1>
+          <h1>hello world</h1>
           <ul>
-            <li><Link to="/login">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
+            <li><Link to="/app">App页面</Link></li>
+            <li><Link to="/about">About页面</Link></li>
           </ul>
-          <Route path="/" exact component={App}/>
-          <Route path="/login" component={Hello}/>
-          <Route path="/about" component={App}/>
+          <Route exact path="/app" component={App}/>
+          <Route exact path="/about" component={About}/>
         </div>
-      </BrowserRouter>
+      </ConnectedRouter>
     )
   }
 }

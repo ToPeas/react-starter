@@ -30,7 +30,7 @@ npm run build
 
 [x] redux-store热更新
 
-[ ] redux和router同步数据
+[x] redux和router同步数据
 
 [x] 添加editorconfig的支持
 
@@ -59,3 +59,6 @@ npm run build
 [ ] 使用不同环境的不同配置文件处理
 
 
+### logs
+
+* 6-12 添加router和redux的结合，使用模块`connected-react-router`

@@ -7,6 +7,7 @@ import {Route, Link, Switch} from 'react-router-dom'
 import {ConnectedRouter} from 'connected-react-router/immutable'
 import App from '../containers/App'
 import About from '../containers/About'
+import Admin from '../containers/Admin'
 
 const Root = props => (
   <ConnectedRouter history={props.history}>
@@ -16,11 +17,13 @@ const Root = props => (
         <li><Link to="/app">App页面</Link></li>
         <li><Link to="/about">About页面</Link></li>
         <li><Link to="/miss">Miss页面</Link></li>
+        <li><Link to="/admin">Admin页面</Link></li>
       </ul>
       <Switch>
         <Route exact path="/app" component={App}/>
         <Route exact path="/about" component={About}/>
         <Route path="/miss" render={() => (<div>Miss</div>)}/>
+        <Route path="*" render={() => (<Admin/>)}/>
       </Switch>
     </div>
   </ConnectedRouter>

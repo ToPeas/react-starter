@@ -5,7 +5,8 @@
     "prebuild": "npm run clean",
     "build": "node build/build.js",
     "start": "node server.js",
-    "test": "NODE_ENV=test jest --no-cache --coverage"
+    "test": "NODE_ENV=test jest --no-cache --coverage",
+    "build:dll": "webpack --config build/webpack.dll.js"
   },
   "devDependencies": {
     "axios": "^0.16.1",
@@ -79,11 +80,13 @@
     "babel-plugin-import": "^1.2.1",
     "chai": "^4.0.1",
     "connect-history-api-fallback": "^1.3.0",
+    "connected-react-router": "^4.2.1",
     "eslint-friendly-formatter": "^3.0.0",
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "global": "^4.3.2",
     "highlight.js": "^9.12.0",
+    "history": "^4.6.1",
     "immutable": "^3.8.1",
     "koa2-history-api-fallback": "^0.0.5",
     "marked": "^0.3.6",
@@ -91,6 +94,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "progress-bar-webpack-plugin": "^1.9.3",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-hot-loader": "^3.0.0-beta.7",
@@ -100,6 +104,7 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
+    "redux-immutable": "^4.0.0",
     "redux-immutablejs": "^0.0.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"

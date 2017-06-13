@@ -16,20 +16,25 @@
 npm run dev
 ```
 
+
 #### 构建环境
 
 ```bash
 npm run build
 ```
+
+
+## todo
+
 [x] 热更新
 
 [x] redux-store热更新
 
-[ ] redux和router同步数据
+[x] redux和router同步数据
 
 [x] 添加editorconfig的支持
 
-[ ] dockerfile支持
+[ ] docker支持
 
 [ ] 按需加载
 
@@ -39,6 +44,21 @@ npm run build
 
 [ ] 提取公共样式的优化
 
-[ ] 尝试css-modules˚
+[ ] 尝试css-modules
 
 [ ] 配置和解决完所有的eslint报错
+
+[ ] ServerWorker支持
+
+[ ] 英文文档
+
+[ ] 完善package.json脚本
+
+[ ] 添加脚手架的的网站展示
+
+[ ] 使用不同环境的不同配置文件处理
+
+
+### logs
+
+* 6-12 添加router和redux的结合，使用模块`connected-react-router`(解决之前不用跳转的问题)

@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 import logo from '../asset/imgs/logo.svg'
 import { getIndexData } from '../stores/reducer/reduceApp'
 import '../style/pages/App.less'
@@ -18,23 +19,26 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class App extends Component {
-  handleClick () {
+  handleClick() {
     return this.props.getIndexData()
   }
 
-  render () {
+  goto() {
+    this.props.dispatch(push('/about'))
+  }
+
+  render() {
     return (
       <div className="App">
         <div className="App-header">
-          <p>点击logo</p>
-          <img src={logo} className="App-logo" onClick={this.handleClick.bind(this)} alt="logo"/>
+          <p>点击第一个logo，发送一个异步的请求</p>
+          <img className="App-logo" src={logo} onClick={this.handleClick.bind(this)} alt="logo" />
         </div>
         <h2>裴大哥爱你哟</h2>
-        <Hello cc="裴大哥爱你" />
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Markdown />
+        <div>
+          <p>点击第二个logo，进行redux的跳转</p>
+          <img className="App-logo" src={logo} onClick={this.goto.bind(this)} alt="logo" />
+        </div>
       </div>
     )
   }

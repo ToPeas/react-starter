@@ -2,12 +2,12 @@
  * Created by topeas on 2017/6/7.
  */
 
-import React, { Component } from 'react'
-import { Button, Input, message, Tag, Tooltip, Upload, Icon, Modal, Menu, } from 'antd'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, {Component} from 'react'
+import {Button, Input, message, Tag, Tooltip, Upload, Icon, Modal, Menu,} from 'antd'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import marked from 'marked'
-import { sendMarkdown } from '../stores/reducer/markdown'
+import {sendMarkdown} from '../stores/reducer/markdown'
 
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
@@ -34,17 +34,17 @@ const props = {
 
 const mapStateToProps = state => {
   return {
-    markdown: state.markdown.toJS()
+    markdown: state.get('markdown').toJS()
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = bindActionCreators({sendMarkdown}, dispatch)
-  return {...actions, dispatch}
+  const actions = bindActionCreators({ sendMarkdown }, dispatch)
+  return { ...actions, dispatch }
 }
 
 class Markdown extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       value: '',
@@ -75,7 +75,7 @@ class Markdown extends Component {
       preEnd = preStart + exist.length
     }
     let input = origin.slice(0, start) + text + origin.slice(end)
-    this.setState({value: input})
+    this.setState({ value: input })
 
   }
 
@@ -99,10 +99,10 @@ class Markdown extends Component {
         this.insertText('[链接名字]()', 1, 5)
         break
       case 'localImgLink':
-        this.setState({localImgVisible: true})
+        this.setState({ localImgVisible: true })
         break
       case 'webImgLink':
-        this.setState({webImgVisible: true}, () => this.webImgLink.refs.input.focus())
+        this.setState({ webImgVisible: true }, () => this.webImgLink.refs.input.focus())
 
         break
       default:
@@ -111,21 +111,21 @@ class Markdown extends Component {
 
   }
 
-  handleChange (event) {
-    this.setState({value: event.target.value})
+  handleChange(event) {
+    this.setState({ value: event.target.value })
   }
 
-  handleTitle (event) {
-    this.setState({title: event.target.value})
+  handleTitle(event) {
+    this.setState({ title: event.target.value })
   }
 
-  handleSummary (event) {
-    this.setState({summary: event.target.value})
+  handleSummary(event) {
+    this.setState({ summary: event.target.value })
   }
 
-  handleClick () {
+  handleClick() {
     const value = marked(this.state.value)
-    const {title, tags, summary} = this.state
+    const { title, tags, summary } = this.state
     const reduxValue = this.props.markdown.markdownContent
     if (!title) return message.error('标题不能为空')
     if (!summary) return message.error('简介不能为空')
@@ -141,22 +141,22 @@ class Markdown extends Component {
     this.props.sendMarkdown(markdown)
   }
 
-  createMarkdownPreview () {
-    return {__html: marked(this.state.value)}
+  createMarkdownPreview() {
+    return { __html: marked(this.state.value) }
   }
 
   handleClose = (removedTag) => {
     const tags = this.state.tags.filter(tag => tag !== removedTag)
     console.log(tags)
-    this.setState({tags})
+    this.setState({ tags })
   }
 
   showInput = () => {
-    this.setState({inputVisible: true}, () => this.input.focus())
+    this.setState({ inputVisible: true }, () => this.input.focus())
   }
 
   handleInputChange = (e) => {
-    this.setState({inputValue: e.target.value})
+    this.setState({ inputValue: e.target.value })
   }
 
   handleInputConfirm = () => {
@@ -182,8 +182,8 @@ class Markdown extends Component {
     this.webImgLink.refs.input.value = ''
   }
 
-  render () {
-    const {tags, inputVisible, inputValue, localImgVisible, loading, webImgVisible} = this.state
+  render() {
+    const { tags, inputVisible, inputValue, localImgVisible, loading, webImgVisible } = this.state
     return (
       <div>
         <header>
@@ -206,7 +206,7 @@ class Markdown extends Component {
                 ref={this.saveInputRef}
                 type="text"
                 size="small"
-                style={{width: 78}}
+                style={{ width: 78 }}
                 value={inputValue}
                 onChange={this.handleInputChange}
                 onBlur={this.handleInputConfirm}
@@ -241,7 +241,7 @@ class Markdown extends Component {
             <Menu.Item key="webImgLink">外部链接</Menu.Item>
           </SubMenu>
         </Menu>
-        <div dangerouslySetInnerHTML={this.createMarkdownPreview()} style={{'textAlign': 'left'}}/>
+        <div dangerouslySetInnerHTML={this.createMarkdownPreview()} style={{ 'textAlign': 'left' }}/>
 
         <Input type="textarea"
                rows={15} onChange={this.handleChange} value={this.state.value}
@@ -252,9 +252,9 @@ class Markdown extends Component {
           visible={localImgVisible}
           title="上传图片"
           onOk={this.handleOk}
-          onCancel={() => this.setState({localImgVisible: false})}
+          onCancel={() => this.setState({ localImgVisible: false })}
           footer={[
-            <Button key="back" size="large" onClick={() => this.setState({localImgVisible: false})}>取消</Button>,
+            <Button key="back" size="large" onClick={() => this.setState({ localImgVisible: false })}>取消</Button>,
             <Button key="submit" type="primary" size="large" loading={loading} onClick={this.handleOk}>
               上传
             </Button>,
@@ -274,7 +274,7 @@ class Markdown extends Component {
           onOk={this.handleImgLink}
           onCancel={() => {
             this.webImgLink.refs.input.value = ''
-            this.setState({webImgVisible: false})
+            this.setState({ webImgVisible: false })
           }}
         >
           <Input placeholder="在这里添加链接" ref={(webImgLink) => this.webImgLink = webImgLink}/>

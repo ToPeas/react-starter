@@ -3,9 +3,9 @@
  */
 
 // import { combineReducers } from 'redux'
-import { combineReducers } from 'redux-immutable'
-import test from './reducer/reduceApp'
+import {combineReducers} from 'redux-immutable'
+import markdown from './reducer/markdown'
 
 export default combineReducers({
-  test,
+  markdown,
 })

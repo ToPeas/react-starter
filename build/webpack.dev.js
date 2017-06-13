@@ -9,7 +9,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HappyPack = require('happypack')
 const os = require('os')
-let happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
+let happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = merge(BaseConf, {
@@ -24,9 +24,8 @@ module.exports = merge(BaseConf, {
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      favicon:path.resolve(__dirname, '../favicon.jpg'),
+      favicon: path.resolve(__dirname, '../favicon.jpg'),
       template: path.resolve(__dirname, '../index.html'),
-      favicon:'../favicon.ico',
       inject: true
     }),
   ],

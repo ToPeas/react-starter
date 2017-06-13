@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createBrowserHistory } from 'history'
-// import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { routerMiddleware, connectRouter } from 'connected-react-router/immutable'
 import reducers from './stores/index'
 

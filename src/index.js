@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createHistory from 'history/createBrowserHistory'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import configStore, { history } from './store'

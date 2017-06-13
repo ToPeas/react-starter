@@ -9,7 +9,7 @@ import api from '../../api/index'
 import {message} from 'antd'
 
 const initStates = fromJS({
-  markdownContent: '',
+  markdownContent: 'sdsd',
 })
 
 const reducers = {

@@ -5371,7 +5371,7 @@ reduce-function-call@^1.0.1:
 
 redux-immutable@^4.0.0:
   version "4.0.0"
-  resolved "http://registry.npm.taobao.org/redux-immutable/download/redux-immutable-4.0.0.tgz#3a1a32df66366462b63691f0e1dc35e472bbc9f3"
+  resolved "http://r.cnpmjs.org/redux-immutable/download/redux-immutable-4.0.0.tgz#3a1a32df66366462b63691f0e1dc35e472bbc9f3"
 
 redux-immutablejs@^0.0.8:
   version "0.0.8"

@@ -566,7 +566,7 @@ babel-plugin-check-es2015-constants@^6.22.0:
 
 babel-plugin-import@^1.2.1:
   version "1.2.1"
-  resolved "http://r.cnpmjs.org/babel-plugin-import/download/babel-plugin-import-1.2.1.tgz#7726aa1b0f780e68d50f9d38e38b714edd9e7b0f"
+  resolved "http://registry.npm.taobao.org/babel-plugin-import/download/babel-plugin-import-1.2.1.tgz#7726aa1b0f780e68d50f9d38e38b714edd9e7b0f"
 
 babel-plugin-istanbul@^4.0.0:
   version "4.1.4"
@@ -1655,6 +1655,13 @@ cookie-signature@1.0.6:
 cookie@0.3.1:
   version "0.3.1"
   resolved "http://r.cnpmjs.org/cookie/download/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
+
+cookies@^0.7.0:
+  version "0.7.0"
+  resolved "http://registry.npm.taobao.org/cookies/download/cookies-0.7.0.tgz#0bc961d910c35254980fc7c9eff5da12011bbf00"
+  dependencies:
+    depd "~1.1.0"
+    keygrip "~1.0.1"
 
 cookies@~0.7.0:
   version "0.7.0"

@@ -7,12 +7,13 @@ import './style/index.less'
 import App from './routes/index'
 
 const store = configStore()
+console.log('', store)
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Component history={history} />
+        <Component history={history}/>
       </Provider>
     </AppContainer>,
     document.getElementById('root'),
@@ -21,6 +22,7 @@ const render = (Component) => {
 
 render(App)
 
+export default store
 if (module.hot) {
   module.hot.accept('./routes/index', () => {
     const newApp = require('./routes/index').default

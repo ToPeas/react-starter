@@ -2,26 +2,55 @@
  * Created by mac on 2017/6/9.
  */
 
-import React, {Component} from 'react'
-import {Layout, Menu, Breadcrumb, Icon} from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu;
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd'
+import { connect } from 'react-redux'
+const { Header, Content, Footer, Sider, Tag } = Layout
+import { getOne } from '../stores/reducer/posts'
+const SubMenu = Menu.SubMenu
 import '../style/admin.css'
 
+const mapStateToProps = state => ({
+  // immutable最原始的写法
+  markdown: state.get('markdown').toJS(),
+  state,
+})
+
+const mapDispatchToProps = (dispatch) => {
+  const actions = bindActionCreators({ getOne }, dispatch)
+
+  return {
+    ...actions, dispatch,
+  }
+}
+
 class SiderDemo extends Component {
-  state = {
-    collapsed: false,
-    mode: 'inline',
-  };
+  constructor (props) {
+    super(props)
+    this.state = {
+      collapsed: false,
+      mode: 'inline',
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   onCollapse = (collapsed) => {
-    console.log(collapsed);
     this.setState({
       collapsed,
       mode: collapsed ? 'vertical' : 'inline',
-    });
+    })
   }
 
-  render() {
+  handleClick () {
+    this.props.getOne({ id: '594129e87bd23be623ed6e25' })
+  }
+
+  componentWillMount () {
+    console.log('', this)
+  }
+
+  render () {
     return (
       <Layout>
         <Sider
@@ -30,7 +59,7 @@ class SiderDemo extends Component {
           onCollapse={this.onCollapse}
         >
           <div className="logo"/>
-          <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={['6']}>
+          <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={[ '6' ]}>
             <SubMenu
               key="sub1"
               title={<span><Icon type="user"/><span className="nav-text">User</span></span>}
@@ -62,7 +91,7 @@ class SiderDemo extends Component {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              Bill is a cat.
+              <Button onClick={this.handleClick}>发送请求</Button>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
@@ -70,8 +99,8 @@ class SiderDemo extends Component {
           </Footer>
         </Layout>
       </Layout>
-    );
+    )
   }
 }
 
-export default SiderDemo
+export default connect(mapStateToProps, mapDispatchToProps)(SiderDemo)

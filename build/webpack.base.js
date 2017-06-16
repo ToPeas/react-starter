@@ -55,14 +55,25 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           //resolve-url-loader may be chained before sass-loader if necessary
-          use: ['css-loader', 'less-loader']
+          use: [{
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: "[name]-[local]-[hash:base64:3]"
+            }
+          }, 'less-loader']
         })
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader'
+          use: {
+            loader: 'css-loader'
+
+
+          }
         })
       },
       {
@@ -90,7 +101,7 @@ module.exports = {
     }),
     new HappyPack({
       id: 'jsx',
-      loaders: ['babel-loader?cacheDirectory=true'],
+      loaders: ['babel-loader?cacheDirectory=true',"webpack-module-hot-accept"],
       // threadPool: happyThreadPool,
       verbose: true
     }),

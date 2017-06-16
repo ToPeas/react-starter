@@ -8,24 +8,38 @@ import {ConnectedRouter} from 'connected-react-router/immutable'
 import App from '../containers/App'
 import About from '../containers/About'
 import Admin from '../containers/Admin'
+import NotFound from '../containers/NotFound'
 import Login from '../containers/Login'
+import PrivateRoute from './PrivateRoute'
+import './routes.less'
+
+
+const Index = () => {
+  return (
+    <div style={{ marginTop: '60px', textAlign: 'center' }}>一个没有牌面的首页</div>
+
+  )
+}
+
 
 const Root = props => (
   <ConnectedRouter history={props.history}>
     <div>
       <h1>hello world</h1>
-      <ul>
-        <li><Link to="/app">App页面</Link></li>
-        <li><Link to="/about">About页面</Link></li>
+      <ul className="nav">
+        {/*<li><Link to="/markdown">markdown页面</Link></li>*/}
+        <li><Link to="/app">app</Link></li>
         <li><Link to="/miss">Miss页面</Link></li>
         <li><Link to="/admin">Admin页面</Link></li>
+        <li><Link to="/login">登录页面</Link></li>
       </ul>
       <Switch>
-        <Route exact path="/app" component={App}/>
-        <Route exact path="/about" component={About}/>
+        <Route exact path="/" component={Index}/>
+        <PrivateRoute exact path="/app" component={App}/>
+        <Route exact path="/admin" component={Admin}/>
         <Route exact path="/login" component={Login}/>
         <Route path="/miss" render={() => (<div>Miss</div>)}/>
-        <Route path="*" render={() => (<Admin/>)}/>
+        <Route path="*" render={() => (<NotFound/>)}/>
       </Switch>
     </div>
   </ConnectedRouter>

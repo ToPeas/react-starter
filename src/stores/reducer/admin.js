@@ -2,10 +2,10 @@
  * Created by topeas on 2017/6/15.
  */
 
-import { fromJS } from 'immutable'
-import { message } from 'antd'
-import { createReducer } from 'redux-immutablejs'
-import { push } from 'connected-react-router'
+import {fromJS} from 'immutable'
+import {message} from 'antd'
+import {createReducer} from 'redux-immutablejs'
+import {push} from 'connected-react-router'
 import * as actionTypes from '../const/actionType'
 import api from '../../api/index'
 
@@ -39,6 +39,7 @@ export const login = data => async (dispatch) => {
         token: res.data.token,
       },
     })
+    sessionStorage.setItem('token', res.data.token)
     return dispatch(push('/admin'))
   }
   message.error('登录失败')

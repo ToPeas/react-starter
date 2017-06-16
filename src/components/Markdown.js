@@ -3,15 +3,13 @@
  */
 
 import React, {Component} from 'react'
-import {Button, Input, message, Tag, Tooltip, Upload, Icon, Modal, Menu,} from 'antd'
+import {Button, Input, message, Tag, Tooltip, Upload, Icon, Modal, Menu, Checkbox} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import marked from 'marked'
 import {sendMarkdown} from '../stores/reducer/markdown'
 
 const SubMenu = Menu.SubMenu
-const MenuItemGroup = Menu.ItemGroup
-
 const Dragger = Upload.Dragger
 
 const props = {
@@ -48,13 +46,14 @@ class Markdown extends Component {
     super(props)
     this.state = {
       value: '',
-      tags: ['node', 'js'],
+      tags: ['node'],
       inputVisible: false,
       inputValue: '',
       title: '',
       summary: '',
       localImgVisible: false,
       webImgVisible: false,
+      isPublish: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -62,6 +61,7 @@ class Markdown extends Component {
     this.handleSummary = this.handleSummary.bind(this)
     this.handleClickMenu = this.handleClickMenu.bind(this)
     this.createMarkdownPreview = this.createMarkdownPreview.bind(this)
+    this.handleCheckBox = this.handleCheckBox.bind(this)
   }
 
   insertText = (text, preStart, preEnd) => {
@@ -145,6 +145,11 @@ class Markdown extends Component {
     return { __html: marked(this.state.value) }
   }
 
+  handleCheckBox(e) {
+
+    this.setState({ isPublish: !this.state.isPublish })
+  }
+
   handleClose = (removedTag) => {
     const tags = this.state.tags.filter(tag => tag !== removedTag)
     console.log(tags)
@@ -216,6 +221,7 @@ class Markdown extends Component {
             {!inputVisible && <Button size="large" type="dashed" onClick={this.showInput}>+ New Tag</Button>}
           </div>
         </header>
+        <Checkbox onChange={this.handleCheckBox}>是否发布</Checkbox>
         <Menu
           onClick={this.handleClickMenu}
           selectedKeys={[this.state.current]}

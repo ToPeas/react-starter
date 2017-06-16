@@ -32,7 +32,6 @@ const reducers = {
 
 export const getOne = data => async (dispatch) => {
   const { id } = data
-  console.log('我是发布请求时候获得到的store', store.getState().get('markdown').toJS())
   const res = await api.get(`/posts/${id}`)
   console.log('', res)
   if (res.code === 0) {

@@ -2,15 +2,16 @@
  * Created by topeas on 2017/6/7.
  */
 
-import React, {Component} from 'react'
-import {Button, Input, message, Tag, Tooltip, Upload, Icon, Modal, Menu, Checkbox} from 'antd'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import marked from 'marked'
-import {sendMarkdown} from '../stores/reducer/markdown'
+import React, { Component } from 'react'
+import { Button, Input, message, Tag, Tooltip, Upload, Icon, Modal, Menu, Checkbox, Select } from 'antd'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { marked } from '../utils/marked'
+import { sendMarkdown } from '../stores/reducer/markdown'
 
 const SubMenu = Menu.SubMenu
 const Dragger = Upload.Dragger
+const { Option, OptGroup } = Select
 
 const props = {
   name: 'file',
@@ -30,11 +31,9 @@ const props = {
   },
 }
 
-const mapStateToProps = state => {
-  return {
-    markdown: state.get('markdown').toJS()
-  }
-}
+const mapStateToProps = state => ({
+  markdown: state.get('markdown').toJS(),
+})
 
 const mapDispatchToProps = (dispatch) => {
   const actions = bindActionCreators({ sendMarkdown }, dispatch)
@@ -42,11 +41,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Markdown extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       value: '',
-      tags: ['node'],
+      tags: [ 'node' ],
       inputVisible: false,
       inputValue: '',
       title: '',
@@ -54,6 +53,7 @@ class Markdown extends Component {
       localImgVisible: false,
       webImgVisible: false,
       isPublish: false,
+      category: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -62,10 +62,11 @@ class Markdown extends Component {
     this.handleClickMenu = this.handleClickMenu.bind(this)
     this.createMarkdownPreview = this.createMarkdownPreview.bind(this)
     this.handleCheckBox = this.handleCheckBox.bind(this)
+    this.handleCategory = this.handleCategory.bind(this)
   }
 
   insertText = (text, preStart, preEnd) => {
-    let textControl = this.input.refs.input
+    const textControl = this.input.refs.input
     const start = textControl.selectionStart
     const end = textControl.selectionEnd
     const origin = this.input.refs.input.value
@@ -74,9 +75,12 @@ class Markdown extends Component {
       text = text.slice(0, preStart) + exist + text.slice(preEnd)
       preEnd = preStart + exist.length
     }
-    let input = origin.slice(0, start) + text + origin.slice(end)
+    const input = origin.slice(0, start) + text + origin.slice(end)
     this.setState({ value: input })
+  }
 
+  handleCategory (value) {
+    this.setState({ category: value })
   }
 
   handleClickMenu = (event) => {
@@ -108,31 +112,32 @@ class Markdown extends Component {
       default:
         alert('没有匹配')
     }
-
   }
 
-  handleChange(event) {
+  handleChange (event) {
     this.setState({ value: event.target.value })
   }
 
-  handleTitle(event) {
+  handleTitle (event) {
     this.setState({ title: event.target.value })
   }
 
-  handleSummary(event) {
+  handleSummary (event) {
     this.setState({ summary: event.target.value })
   }
 
-  handleClick() {
+  handleClick () {
     const value = marked(this.state.value)
-    const { title, tags, summary } = this.state
+    const { title, tags, summary, category } = this.state
     const reduxValue = this.props.markdown.markdownContent
     if (!title) return message.error('标题不能为空')
     if (!summary) return message.error('简介不能为空')
     if (!value) return message.error('提交的内容不能为空')
     if (value === reduxValue) return message.warning('提交的内容并没有更新')
+    if (!value) return message.error('请选择一个分类')
     const markdown = {
       title,
+      category,
       summary,
       content: value,
       tags,
@@ -141,12 +146,11 @@ class Markdown extends Component {
     this.props.sendMarkdown(markdown)
   }
 
-  createMarkdownPreview() {
+  createMarkdownPreview () {
     return { __html: marked(this.state.value) }
   }
 
-  handleCheckBox(e) {
-
+  handleCheckBox (e) {
     this.setState({ isPublish: !this.state.isPublish })
   }
 
@@ -169,7 +173,7 @@ class Markdown extends Component {
     const inputValue = state.inputValue
     let tags = state.tags
     if (inputValue && tags.indexOf(inputValue) === -1) {
-      tags = [...tags, inputValue]
+      tags = [ ...tags, inputValue ]
     }
     console.log(tags)
     this.setState({
@@ -187,7 +191,7 @@ class Markdown extends Component {
     this.webImgLink.refs.input.value = ''
   }
 
-  render() {
+  render () {
     const { tags, inputVisible, inputValue, localImgVisible, loading, webImgVisible } = this.state
     return (
       <div>
@@ -221,10 +225,23 @@ class Markdown extends Component {
             {!inputVisible && <Button size="large" type="dashed" onClick={this.showInput}>+ New Tag</Button>}
           </div>
         </header>
+        <Select
+          defaultValue=""
+          style={{ width: 200 }}
+          onChange={this.handleCategory}
+        >
+          <OptGroup label="Manager">
+            <Option value="node">node</Option>
+          </OptGroup>
+          <OptGroup label="Engine">
+            <Option value="vue">vue</Option>
+            <Option value="react">react</Option>
+          </OptGroup>
+        </Select>
         <Checkbox onChange={this.handleCheckBox}>是否发布</Checkbox>
         <Menu
           onClick={this.handleClickMenu}
-          selectedKeys={[this.state.current]}
+          selectedKeys={[ this.state.current ]}
           mode="horizontal"
         >
           <Menu.Item key="bold">
@@ -247,11 +264,12 @@ class Markdown extends Component {
             <Menu.Item key="webImgLink">外部链接</Menu.Item>
           </SubMenu>
         </Menu>
-        <div dangerouslySetInnerHTML={this.createMarkdownPreview()} style={{ 'textAlign': 'left' }}/>
+        <div dangerouslySetInnerHTML={this.createMarkdownPreview()} style={{ textAlign: 'left' }}/>
 
-        <Input type="textarea"
-               rows={15} onChange={this.handleChange} value={this.state.value}
-               ref={(input) => this.input = input}
+        <Input
+          type="textarea"
+          rows={15} onChange={this.handleChange} value={this.state.value}
+          ref={input => this.input = input}
         />
 
         <Modal
@@ -283,7 +301,7 @@ class Markdown extends Component {
             this.setState({ webImgVisible: false })
           }}
         >
-          <Input placeholder="在这里添加链接" ref={(webImgLink) => this.webImgLink = webImgLink}/>
+          <Input placeholder="在这里添加链接" ref={webImgLink => this.webImgLink = webImgLink}/>
         </Modal>
       </div>
     )

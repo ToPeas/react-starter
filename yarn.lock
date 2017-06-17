@@ -3146,7 +3146,7 @@ he@1.1.x:
 
 highlight.js@^9.12.0:
   version "9.12.0"
-  resolved "http://r.cnpmjs.org/highlight.js/download/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
+  resolved "http://registry.npm.taobao.org/highlight.js/download/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
 
 history@^4.5.1, history@^4.6.0, history@^4.6.1:
   version "4.6.1"

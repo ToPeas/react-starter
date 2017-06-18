@@ -6,10 +6,13 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd'
 import { connect } from 'react-redux'
+import { BrowserRouter as Route, Link, Switch } from 'react-router-dom'
 const { Header, Content, Footer, Sider, Tag } = Layout
 import { getOne } from '../stores/reducer/posts'
 const SubMenu = Menu.SubMenu
 import '../style/admin.css'
+import App from './App'
+import About from './About'
 
 const mapStateToProps = state => ({
   // immutable最原始的写法
@@ -59,7 +62,7 @@ class SiderDemo extends Component {
           onCollapse={this.onCollapse}
         >
           <div className="logo"/>
-          <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={[ '6' ]}>
+          <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={['6']}>
             <SubMenu
               key="sub1"
               title={<span><Icon type="user"/><span className="nav-text">文章管理</span></span>}
@@ -75,6 +78,10 @@ class SiderDemo extends Component {
               </span>
             </Menu.Item>
           </Menu>
+          <Menu>
+            <Menu.Item key="1"><Link to="/app">跳转到app</Link></Menu.Item>
+            <Menu.Item key="2"><Link to="/about">跳转到about</Link></Menu.Item>
+          </Menu>
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}/>
@@ -84,6 +91,14 @@ class SiderDemo extends Component {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+
+              <Switch>
+                <Route path="/about" component={About}/>
+                <Route path="/app" component={App}/>
+
+
+              </Switch>
+              <div>我是admin页面的首页</div>
               <Button onClick={this.handleClick}>发送请求</Button>
             </div>
           </Content>

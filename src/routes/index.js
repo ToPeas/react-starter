@@ -10,6 +10,9 @@ import About from '../containers/About'
 import Admin from '../containers/Admin'
 import NotFound from '../containers/NotFound'
 import Login from '../containers/Login'
+import Main from '../containers/Main'
+import Dashborad from '../containers/Dashborad'
+import Article from '../containers/Article'
 import PrivateRoute from './PrivateRoute'
 import './routes.less'
 
@@ -20,26 +23,17 @@ const Index = () => (
 
 const Miss = () => (
   <div style={{ marginTop: '60px', textAlign: 'center' }}>miss页面</div>
-
 )
 
 const Root = props => (
   <ConnectedRouter history={props.history}>
     <div>
-      <h1>hello world</h1>
-      <ul className="nav">
-        {/* <li><Link to="/markdown">markdown页面</Link></li>*/}
-        <li><Link to="/app">app</Link></li>
-        <li><Link to="/miss">Miss页面</Link></li>
-        <li><Link to="/admin">Admin页面</Link></li>
-        <li><Link to="/login">登录页面</Link></li>
-      </ul>
       <Switch>
         <Route exact path="/" component={Index}/>
-        <PrivateRoute exact path="/app" component={App}/>
+        <PrivateRoute exact path="/dashborad" component={Main}/>
+        <PrivateRoute path="/article" component={Article}/>
         <PrivateRoute exact path="/admin" component={Admin}/>
         <Route exact path="/login" component={Login}/>
-        <PrivateRoute path="/miss" component={Miss}/>
         <Route render={() => (<NotFound />)}/>
       </Switch>
     </div>
